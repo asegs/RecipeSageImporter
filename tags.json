@@ -3,8 +3,12 @@
 	"breads": "bread",
 	"cakes": "cake",
 	"cakes dessert": "cake",
-	"condiment": "condiments",
+	"condiments": "condiment",
 	"desserts": "dessert",
 	"salads": "salad",
-	"side-dish": "sides"
+	"side-dish": "sides",
+	"side dish": "sides",
+	"condiment/spread": "condiment",
+	"cakes, dessert": "cake",
+	"main dishes": "main course"
 }

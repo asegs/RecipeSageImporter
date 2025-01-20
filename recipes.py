@@ -3,6 +3,16 @@ import uuid
 import sys
 
 HELP_MESSAGE = "recipes.py [input filename] [output filename] (tag mappings) \nrecipes.py -t [input_filename] // Prints your tags"
+TAG_MAP = {}
+if len(sys.argv) == 4:
+	TAG_MAP = json.load(open(sys.argv[3]))
+
+
+def map_tag(tag):
+	tag = tag.lower()
+	if tag in TAG_MAP:
+		return TAG_MAP[tag]
+	return tag
 
 def get_recipes_from_file(input_filename):
 	body = json.load(open(input_filename))
@@ -13,13 +23,13 @@ def get_all_tags(input_filename):
 	recipes = get_recipes_from_file(input_filename)
 	for recipe in recipes:
 		for tag in recipe['categories']:
-			tag_set.add(tag.lower())
+			tag_set.add(map_tag(tag))
 
 	tag_list = list(tag_set)
 	tag_list.sort()
 	return tag_list
 
-if len(sys.argv) == 3 and sys.argv[1] == '-t':
+if len(sys.argv) >= 3 and sys.argv[1] == '-t':
 	# Parse for tags
 	tags = get_all_tags(sys.argv[2])
 	for tag in tags:
@@ -34,18 +44,6 @@ if len(sys.argv) < 3:
 
 input_filename = sys.argv[1]
 output_filename = sys.argv[2]
-
-TAG_MAP = {}
-if len(sys.argv) == 4:
-	TAG_MAP = json.load(open(sys.argv[3]))
-
-
-
-def map_tag(tag):
-	tag = tag.lower()
-	if tag in TAG_MAP:
-		return TAG_MAP[tag]
-	return tag
 
 def add_key(old, new, val, new_key):
 	if val is not None:

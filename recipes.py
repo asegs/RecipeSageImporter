@@ -2,7 +2,7 @@ import json
 import uuid
 import sys
 
-HELP_MESSAGE = "recipes.py [input filename] [output filename] (tag mappings) \nrecipes.py -t [input_filename] // Prints your tags"
+HELP_MESSAGE = "recipes.py [input filename] [output filename] (tag mappings) \nrecipes.py -t [input_filename] (tag mappings) // Prints your tags"
 TAG_MAP = {}
 if len(sys.argv) == 4:
 	TAG_MAP = json.load(open(sys.argv[3]))

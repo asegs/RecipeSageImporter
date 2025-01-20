@@ -12,6 +12,6 @@
 If you use categories/tags on your recipes, they will be imported.
 This script deals with duplicates by lowercasing, but if you want to filter out similar ones, you can run:
 
-`recipes.py -t {saved_file_name.json}` and it will print the tags for you. 
+`recipes.py -t {saved_file_name.json} {tags.json}` and it will print the tags for you, taking into account all deduplicating it would do at runtime.
 
 Then you can edit a `tags.json` file mapping similar tags to one specific tag.  So tidy!

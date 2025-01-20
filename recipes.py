@@ -59,11 +59,11 @@ def old_to_new(recipe):
 	new_recipe['recipeInstructions'] = [{'@type': 'HowToStep', 'text': instruction} for instruction in recipe['instructions']]
 	new_recipe['datePublished'] = recipe['createdAt']
 	new_recipe['name'] = recipe['name']
-	new_recipe['comment'] = {
+	new_recipe['comment'] = [{
         "@type": "Comment",
         "name": "Author Notes",
         "text": recipe.get('notes', '')
-      }
+      }]
 	new_recipe['isBasedOn'] = recipe['url']
 	new_recipe['@context'] = 'http://schema.org'
 	new_recipe['@type'] = "Recipe"

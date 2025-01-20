@@ -5,7 +5,7 @@
 1. Sign in to https://www.recipebox.com/users/recipes
 2. In the inspector, save the response from GET
 	https://api.recipebox.com/v1/users/recipes
-3. Wherever you saved it, run `python3 recipe.py {saved_file_name.json} {output_file_name.json}`
+3. Wherever you saved it, run `python3 recipe.py {saved_file_name.json} {output_file_name.json}` (with an optional `tags.json` arg for tag mapping)
 4. Upload the resulting file to https://recipesage.com/#/settings/import as a JSON-LD file
 5. ???
 

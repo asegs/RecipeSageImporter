@@ -2,7 +2,31 @@ import json
 import uuid
 import sys
 
-HELP_MESSAGE = "recipes.py [input filename] [output filename] (tag mappings)"
+HELP_MESSAGE = "recipes.py [input filename] [output filename] (tag mappings) \nrecipes.py -t [input_filename] // Prints your tags"
+
+def get_recipes_from_file(input_filename):
+	body = json.load(open(input_filename))
+	return body['data']['recipes']
+
+def get_all_tags(input_filename):
+	tag_set = set()
+	recipes = get_recipes_from_file(input_filename)
+	for recipe in recipes:
+		for tag in recipe['categories']:
+			tag_set.add(tag.lower())
+
+	tag_list = list(tag_set)
+	tag_list.sort()
+	return tag_list
+
+if len(sys.argv) == 3 and sys.argv[1] == '-t':
+	# Parse for tags
+	tags = get_all_tags(sys.argv[2])
+	for tag in tags:
+		print(tag)
+	sys.exit(0)
+
+
 
 if len(sys.argv) < 3:
 	print(HELP_MESSAGE)
@@ -26,6 +50,7 @@ def map_tag(tag):
 def add_key(old, new, val, new_key):
 	if val is not None:
 		new[new_key] = val
+
 
 def old_to_new(recipe):
 	new_recipe = {}
@@ -60,8 +85,7 @@ def old_to_new(recipe):
 	return new_recipe
 
 
-body = json.load(open(input_filename))
-recipes = body['data']['recipes']
+recipes = get_recipes_from_file(input_filename)
 
 new_recipes = [old_to_new(r) for r in recipes]
 
